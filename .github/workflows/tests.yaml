@@ -1,0 +1,17 @@
+name: tests
+on:
+  push:
+    branches-ignore: [master]
+
+jobs:
+  lint:
+    runs-on: [ubuntu-20.04]
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: mega-lint
+        uses: nvuillam/mega-linter/flavors/python@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
